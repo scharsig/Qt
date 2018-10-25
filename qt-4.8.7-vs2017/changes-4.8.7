@@ -1,0 +1,259 @@
+Qt 4.8.7 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 4.8.0, 4.8.1, 4.8.2, 4.8.3,
+4.8.4, 4.8.5, and 4.8.6
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+   http://doc.qt.io/qt-4.8/
+
+The Qt version 4.8 series is binary compatible with the 4.7.x series.
+Applications compiled for 4.7 will continue to run with 4.8.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+   http://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain
+more information about a particular change.
+
+****************************************************************************
+* General                                                                  *
+****************************************************************************
+
+General Improvements
+--------------------
+- Fix for CVE-2015-0295 DoS vulnerability in the BMP image handler
+- Multiple Vulnerabilities in Qt Image Format Handling
+  - Fix for CVE-2015-1858 BMP vulnerability
+  - Fix for CVE-2015-1859 ICO vulnerability
+  - Fix for CVE-2015-1860 GIF vulnerability
+- Update bundled libpng to version 1.6.17 to address known vulnerabilities on previous versions
+- Update bundled libtiff to version 4.0.3 to address known vulnerabilities on previous versions
+
+****************************************************************************
+* Library                                                                  *
+****************************************************************************
+
+QtGui
+-----
+- Fix crash when deleting top level windows embedded into QGraphicsProxyWidget [QTBUG-29684]
+- Vista Style: More menu item pixel fixes for QtQuick Control [QTBUG-37451, QTBUG-38376]
+- Polish the image gestures example [QTBUG-37759, QTBUG-37203]
+- QMdiArea: Ignore events of other instances in the event filter [QTBUG-31448]
+- Don't crash on broken GIF images [QTBUG-38367]
+- Fix visual index lookup in QTreeViewPrivate::adjustViewOptionsForIndex() [QTBUG-37813]
+- Windows: Add missing colors to tooltip palette [QTBUG-38183]
+- Memory and file descriptor leak in QFontCache [QTBUG-38035]
+- Tslib QWS: also apply missing release coordinate code to non-raw mode
+- Fix raster graphics on X11 RGB30 [QTBUG-25998]
+- Cleanlooks style: Fix floating point exception
+- Move the C++11 support macros to a central place (qglobal.h)
+- Fix compilation of QWinInputContext with Q_IME_DEBUG defined [QTBUG-40402]
+- Don't convert signed to unsigned when we need all 32bit [QTBUG-40297]
+- Fix compilation warnings due to superfluous commas at the end of enums [qkbd_qws.h]
+- Fix at lot of QT_NO_ define guards for very tiny Qt builds
+- Fix QPainter::drawPolyline() painting errors with cosmetic pen [QTBUG-31579]
+- Don't call virtual methods after the source model is destroyed
+- QSwipeGestureRecognizer: Use qAbs() to check distances [QTBUG-15768]
+- Fix font cache check in QFontEngineFT::recalcAdvances() [QTBUG-24188]
+- QListView: Catch stack overflow on mutual scrollbar calculation [QTBUG-39902, QTBUG-38517]
+- QPdf::addImage(): avoid a QImage detach when it's in an acceptable Format
+- QLineEdit: Disable standard key 'cut' when there is no selection [QTBUG-40477]
+- QTreeView: speed up isRowHidden for the case where no rows are hidden
+- Fix license text and URLs in QMessageBox::aboutQt() [QTBUG-41798]
+- Adjust the layout if a QGraphicsWidget is explicitly hidden [QTBUG-20132]
+- Auto-scroll while selecting entire rows/columns did not work [QTBUG-21201]
+- Rewrite debug output of event classes [QTBUG-38858, QTBUG-42344]
+- Fixed a bug where spans did not always work in layouts [QTBUG-43099]
+- QIdentityProxyModel: remove slow bounds-checking, for more performance
+- Check world matrix is true when seeing if transformations are supported [QTBUG-35200]
+- Fix compilation with QDND_DEBUG [QTBUG-43466]
+- QDateTime: Fix time format in doc [QTBUG-12236]
+- Introduce Windows version 10 [QTBUG-43413]
+- Added check if fontEngine is still in the cache [QTBUG-22942]
+- Fix a division by zero when processing malformed BMP files [QTBUG-44547]
+- Simplify mirroring code and add tests for non-aliged 1 bit images
+- QGLWidget and re-parenting [QTBUG-20652]
+- Fixes crash in gif image decoder
+- Fixes crash in bmp and ico image decoding
+- Use qSwap instead of std::swap so platforms without STL still compile
+- Add Missing Debug Operator Declaration for QTouchEvent::TouchPoint
+
+QtNetwork
+---------
+- Doc: be more explicit about need to set expected SSL cert in errors [QTBUG-16770]
+- Network internals: do not try to cache a deleted entry [QTBUG-17400]
+- QSslCertificate: blacklist NIC certificates from India
+- Refactor disconnectFromFtp to remove cached entries when necessary [QTBUG-40797]
+- Fix minor compiler warning (qsslsocket_openssl_symbols.cpp)
+- Ignore expired certificate during certificate validation [QTBUG-38896]
+- Fix HTTP(s) upload corruption when server closes connection
+
+QtCore
+------
+- Fix compilation using MinGW 64 due to missing __cpuid [QTBUG-34022]
+- Properly escape bytearray data outside the ascii range when using a codec [QTBUG-15543]
+- Use correct values for MAC_OS_X_VERSION_10_* defines
+- Remove use of 'register' from Qt
+- Remove the use of a template qUnused function for ICC'
+- Fix QLineF Detailed Description [QTBUG-44309]
+- QThread: fix race when setting the eventDispatcher [QTBUG-29452]
+- Simplify calculation of week number
+- Improve digitToCLocale sign char handling [QTBUG-35069]
+
+QtScript
+--------
+- Fix compiler warning (qscriptdebuggerconsole.cpp) [QTBUG-42032]
+
+QtDBus
+------
+- QDbus: Fix (!a == b) comparison
+ 
+QtWebkit
+--------
+- Fix compilation of QtWebKit with MSVC 2012/2013 [QTBUG-31882, QTBUG-34705]
+- Restore dirty line logic in RenderInline::destroy
+- Parse multiple buttons during mouse press and release [QTBUG-42319]
+- Fix QWebSettings::setUserStyleSheetUrl() not working with windows paths
+
+QtSql
+-----
+- Fix access of tmpStorage in QODBCResult::exec() [QTBUG-37831]
+- Fix - psql driver must format qdatetime using iso [QTBUG-33389]
+
+Declarative
+-----------
+- Add handling of value-type lists to QDeclarativeExpression::evaluate()
+- Fix Flickable mouse grab issue [QTBUG-27185]
+- Fix empty arrays in QML 1 [QTBUG-43656]
+- QDeclarativeTextEdit: fix use of uninitialised value (qdeclarativetextedit.cpp)
+
+Plugins
+-------
+- Tslib plugin: also apply missing release coordinate code to non-raw mode
+- Correct typo in the Gujarati openType identififer [QTBUG-44568]
+
+3rdParty
+--------
+- Fix building of JSC with libc++
+- Fix DateTime with recent versions of tzdata [QTBUG-41422]
+- Fix thai symbol rendering slowness [QTBUG-37665]
+- Update bundled libpng to version 1.6.17
+- Update bundled libtiff to version 4.0.3
+
+Qt3Support
+----------
+- Don't use QAbstractButton::pixmap() as this will always return 0 [QTBUG-38301]
+
+****************************************************************************
+* Platform Specific Changes                                                *
+****************************************************************************
+
+Qt for Linux/X11
+----------------
+- Don't leak RENDER Pictures in QPixmap::paintEngine(qpixmaps_x11.cpp)
+- Fix Focus problem with QX11EmbedWidget [QTBUG-3617]
+- Identify XButton1|2 release events when mouse is moving [QTBUG-40148]
+- Don't return false when a null pointer is expected [QTBUG-44748]
+
+Qt for Windows
+--------------
+- Use WINVER instead of _MSC_VER for version check in qeventdispatcher_win.cpp [QTBUG-38604]
+- configure.exe now detects newer MinGW versions correctly, enabling 
+  windowsxp and windowsvista styles by default [QTBUG-38706]
+- Fix WINVER #ifdef for QS_TOUCH and QS_POINTER
+- QClipboard Windows debugging: fix compilation with VS2005 [QTBUG-39133]
+- Windows: Added Comma to list of possible numpad keys [QTBUG-38248]
+- qwidget_win.cpp: Initialize WINDOWPLACEMENT correctly [QTBUG-40466]
+- Backport: use backslashes for UNCs path [QTBUG-13359]
+- Windows native socket: handle WSAENETRESET the same as WSAECONNRESET [QTBUG-41934]
+- Windows: Fix return value of QDesktopServices::storageLocation(DataLocation) [QTBUG-43092]
+- Fix glyph's CMAP index might be corrupted when SMP sybmol is present in the font
+- Make distance fields rendering work with Opentype CFF fonts [QTBUG-28746]
+- Fix OpenType fonts with cmap tables on Windows [QTBUG-31656]
+- Use metrics returned by GetGlyphOutline in GGO_METRICS mode [QTBUG-12799]
+- Windows: Fix OS version determination for Windows >= 8 [QTBUG-43413]
+
+Qt for Mac OS X
+---------------
+- OS X: Make Qt application react on applicationShouldHandleReopen [QTBUG-10899]
+- Refactor OS X bundle detection for QFileInfo [QTBUG-31884]
+- Fix MacOS build with SDK 10.7, XCode 4.3 and above [QTBUG-24361]
+- Fix QSysInfo::macVersion for OS X minor versions greater than 9
+- Fix compilation errors with OS X 10.7 SDK or later for the Carbon flavor
+- Mac: Fix mixing unified and non-unified toolbars [QTBUG-36100]
+- Mac Style: Fix QLineEdit frame in 10.10
+- QMacStyle: Fix focus frame rendering in Yosemite
+- Replace all ocurrences of NSApp with [NSApplication sharedApplication] [QTBUG-39644]
+- OSX: make QFileDialog::getSaveFileName honor the initial file name [QTBUG-36212]
+- QMacStyle: Fix QTabBar appearance on Yosemite
+- [OS X]: respect icon visibility preference in system tray menus [QTBUG-41348]
+- Fix bugs generating PDF on Cocoa [QTBUG-10094]
+- Backport implementation of OS X QSystemTrayIcon from Qt 5 [QTBUG-21830]
+- Fix Carbon build (qwidget.cpp)
+- Info.plist.lib whitespace fixup
+- OSX: avoid crash in invalidateBuffer_resizeHelper on parentless widget [QTBUG-41716]
+
+Qt for Blackberry\QNX
+---------------------
+- QNX: Fix QDir::entryInfoList()
+
+Qt for Solaris
+--------------
+- Revert previous QFileDialog fix for Solaris [QTBUG-21451]
+
+****************************************************************************
+* Tools                                                                    *
+****************************************************************************
+
+Assistant
+---------
+- Fix crashes in QtHelp when too many connections are made [QTBUG-36480]
+- Fix crash when accessing the content model [QTBUG-18829]
+- Make sure the content widget never replaces valid data with empty data
+- Assistant: Fix index updating on startup in the remote control mode [QTBUG-36850]
+
+Designer
+--------
+- Fix compiler warnings in Qt Designer [QTBUG-44747]
+
+Linquist
+--------
+- Add Hebrew translation for Qt Linguist
+
+Configure
+---------
+- Allow Qt4 to also build in ppc64[el le]
+- Fix AArch64/arm64 detection
+- Configure: Fix detection of GCC 5
+- configure: add '-psql_config' option
+- Remove filterIncludePath and filterLibraryPath usage [QTBUG-45463]
+
+mkspecs
+--------
+- Add detection of and support for Visual Studio 2015 [QTBUG-45100]
+
+qmake
+-----
+- vcxproj generator: append version suffix only to library targets [QTBUG-38066]
+- qmake: Add object_parallel_to_source config option [QTBUG-34871]
+- fix warning when generating VS 2013 project [QTBUG-36535]
+- qmake vcxproj generator: write PrimaryOutputExtension value [QTBUG-26782]
+- Handle relative paths correctly for files in QMAKE_BUNDLE_DATA
+- Only add the res_file to the generated files if there is no rc_file [QTBUG-29826]
+- *.sln not generated correctly for VS2012 and VS2010 [QTBUG-33446]
+- Fix qmake warning about unknown /Zc:strictStrings option
+
+Other
+-----
+- generate QGL header file from qgl.h [QTBUG-16838]
+- qmlplugindumper: do not pop up a window if an assert is triggered [QTCREATORBUG-12644]
+- Update Hebrew translation
+- Fix string placeholders in two translations (qt_zh_CN.ts)
+- Fix wrong Japanese translation [QTBUG-44081]
+- Fix a translation for zh_CN [QTBUG-32452]
+- Update Hebrew translation for linguist and qtconfig
+- qmlplugindump: Fix build with mingw.org
+- Update copyright headers
+- Doc: Update obsolete external URLs
